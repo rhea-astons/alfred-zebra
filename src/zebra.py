@@ -9,6 +9,9 @@ from workflow.background import run_in_background
 import helpers, configuration
 
 
+GITHUB_SLUG = 'rsnts/alfred-zebra'
+
+
 def CallAPI(endpoint):
   url = config['api_url'] + endpoint
   params = {
@@ -85,6 +88,12 @@ def main(wf):
                 'Please check your configuration file',
                 valid=False)
   else:
+    if wf.update_available:
+      wf.add_item('An update is available!',
+                  autocomplete='workflow:update',
+                  valid=False,
+                  icon=helpers.get_icon(wf, 'cloud-download'))
+
     if query and query.startswith('project'):
       for project in filter_all_projects(wf, query):
         title = u'{} ({})'.format(project['name'], project['id'])
@@ -129,5 +138,5 @@ def main(wf):
 
 if __name__ == '__main__':
   config = configuration.LoadConfig()
-  wf = Workflow()
+  wf = Workflow(update_settings={'github_slug': GITHUB_SLUG})
   sys.exit(wf.run(main))
