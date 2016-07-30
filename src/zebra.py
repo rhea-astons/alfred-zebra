@@ -132,6 +132,12 @@ def main(wf):
                       valid=action['valid'],
                       icon=helpers.get_icon(wf, 'chevron-right'))
 
+    if len(wf._items) == 0:
+            query_name = query[query.find(' ') + 1:]
+            wf.add_item('No formula found for "%s"' % query_name,
+                        autocomplete='%s ' % query[:query.find(' ')],
+                        icon=helpers.get_icon(wf, 'info'))
+
   wf.send_feedback()
 
   cmd = ['/usr/bin/python', wf.workflowfile('zebra_refresh.py')]
