@@ -99,19 +99,20 @@ def main(wf):
         title = u'{} ({})'.format(project['name'], project['id'])
         autocomplete = u'project {}'.format(project['name'])
         url = config['web_url'] + 'project/' + project['id']
+        arg = 'open "{}"'.format(url)
         wf.add_item(title, project['description'],
                     uid=project['id'],
-                    arg=url,
+                    arg=arg,
                     valid=True,
                     icon=helpers.get_icon(wf, 'project'))
     elif query and query.startswith('alias'):
       for activity in filter_aliased_activities(wf, query):
         title = u'{} [{}]'.format(activity['name'], activity['alias'])
         description = u'Project: {}'.format(activity['project']['name'])
-        url = config['web_url'] + 'project/' + activity['project']['id']
+        arg = 'echo -n "{}" | pbcopy'.format(activity['alias'])
         wf.add_item(title, description,
                     uid=activity['alias'],
-                    arg=url,
+                    arg=arg,
                     valid=True,
                     icon=helpers.get_icon(wf, 'activity'))
     else:
