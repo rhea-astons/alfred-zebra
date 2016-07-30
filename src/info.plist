@@ -38,9 +38,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>query="{query}"
-echo $query
-eval $query</string>
+				<string>eval {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
