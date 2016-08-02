@@ -7,7 +7,7 @@ Before runing this workflow, get sure you have a configuration file in your home
 It must contain the following settings:
 ```
 [API]
-url=https://your.zebra.url/api/v0
+url=https://your.zebra.url/to/api
 token=abcdefghijklmnopqrstuvwxyz1234567890
 
 [WEB]
