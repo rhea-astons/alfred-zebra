@@ -11,7 +11,7 @@ def get_icon(wf, name):
 
 
 def search_key_for_action(action):
-  return u'{} {}'.format(action['name'], action['description'])
+  return u'{}'.format(action['name'])
 
 
 def search_key_for_project(project):
